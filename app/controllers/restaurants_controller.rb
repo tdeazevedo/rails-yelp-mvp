@@ -21,6 +21,7 @@ before_action :set_restaurant, only: [:show]
 
   def show
     @review = Review.new
+    @reviews = @restaurant.reviews
   end
 
 private

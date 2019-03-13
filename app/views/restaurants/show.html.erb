@@ -22,16 +22,31 @@
         <%= @restaurant.category %>
       </p>
 
-      <h1>Review creation</h1>
-      <p>You're about to create a review for restaurant <strong><%= @restaurant.name %></strong></p>
+          <h3>Review creation</h3>
+          <p>You're about to create a review for restaurant <strong><%= @restaurant.name %></strong></p>
 
-      <%= simple_form_for [@restaurant, @review] do |f| %>
-        <%= f.input :content %>
-        <%= f.input :rating %>
-        <%= f.submit 'Save', class: 'btn btn-primary' %>
-      <% end %>
+          <%= simple_form_for [@restaurant, @review] do |f| %>
+            <%= f.input :content %>
+            <%= f.input :rating %>
+            <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <% end %>
 
-      <%= link_to 'All restaurants', restaurants_path %>
+          <h3>Reviews</h3>
+     <ul><% @reviews.each do |review| %>
+       <li class="list-group-item list-group-item-warning">
+         <%= review.content %>
+         <strong><%= review.rating %>/5</strong>
+       </li>
+       <% end %>
+       <li class="list-group-item list-group-item-warning">
+         <%= link_to "Add New review", new_restaurant_review_path(@restaurant) , class: "btn btn-success"%>
+       </li>
+     </ul>
+
+
+
+
+      <%= link_to 'All restaurants', restaurants_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
